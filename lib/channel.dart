@@ -1,4 +1,5 @@
 import 'package:gdg_demo/controllers/user_controller.dart';
+import 'package:gdg_demo/middlewares/auth_middleware.dart';
 
 import 'gdg_demo.dart';
 
@@ -21,7 +22,10 @@ class GdgDemoChannel extends ApplicationChannel {
   Controller get entryPoint {
     final router = Router();
 
-    router.route("/users/[:id]").link(() => UserController(context));
+    router
+        .route("/users/[:id]")
+        .link(() => AuthMiddleware())
+        .link(() => UserController(context));
 
     return router;
   }

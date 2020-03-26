@@ -27,7 +27,7 @@ class UserController extends ResourceController {
   }
 
   @Operation.post()
-  Future<Response> postTodo() async {
+  Future<Response> postUser() async {
     final body = User()..read(await request.body.decode(), ignore: ["id"]);
 
     final query = Query<User>(context)
